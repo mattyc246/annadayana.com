@@ -4,11 +4,19 @@
   "version": "1.0.0",
   "author": "Stefano Verna <s.verna@datocms.com>",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-brands-svg-icons": "^5.14.0",
+    "@fortawesome/free-regular-svg-icons": "^5.14.0",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "babel-plugin-styled-components": "^1.11.1",
     "dotenv": "^8.1.0",
     "gatsby": "^2.22.10",
     "gatsby-image": "^2.2.34",
+    "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
     "gatsby-plugin-react-helmet": "^3.1.16",
     "gatsby-plugin-sass": "^2.1.24",
+    "gatsby-plugin-styled-components": "^3.3.11",
     "gatsby-source-datocms": "^2.2.4",
     "gatsby-source-filesystem": "^2.1.40",
     "gatsby-transformer-remark": "^2.6.39",
@@ -18,7 +26,8 @@
     "react-helmet": "^5.2.0",
     "react-masonry-component": "^6.2.1",
     "react-slick": "^0.25.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^5.2.0"
   },
   "keywords": [
     "gatsby"
