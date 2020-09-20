@@ -12,8 +12,9 @@ const Overlay = styled.div`
   background-color: white;
   height: 100vh;
   width: 100vw;
-  padding: 7.5vw;
+  padding: 5vw;
   flex-direction: column;
+  z-index: 999;
 
   .close {
     display: block;

@@ -11,7 +11,7 @@ const Navigator = styled.header`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 7.5vw;
+  padding: 0 5vw;
 
   @media screen and (min-width: 740px){
     justify-content: flex-start;
@@ -61,14 +61,26 @@ const StyledIcon = styled(FontAwesomeIcon)`
 const Navbar = ({setShowMenu}) => {
   return (
     <Navigator>
-      <div style={{ height: "50px", width: "50px", border: "1px solid black" }}>
+      <div
+        style={{
+          height: "55px",
+          width: "55px",
+          border: "1px solid black",
+          textAlign: "center",
+          padding: "5px",
+        }}
+      >
         Logo Here
       </div>
       <FlexyLinks>
-        <Link to="/" activeClassName="active">Work</Link>
-        <Link to="/about" activeClassName="active">About</Link>
+        <Link to="/" activeClassName="active">
+          Work
+        </Link>
+        <Link to="/about" activeClassName="active">
+          About
+        </Link>
       </FlexyLinks>
-      <StyledIcon icon={faBars} onClick={() => setShowMenu(true)}/>
+      <StyledIcon icon={faBars} onClick={() => setShowMenu(true)} />
     </Navigator>
   );
 };
