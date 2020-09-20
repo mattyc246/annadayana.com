@@ -1,6 +1,8 @@
-import { faFacebook, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
+import {StaticQuery} from "gatsby"
 import styled from "styled-components";
 
 const PageFooter = styled.footer`
@@ -28,17 +30,57 @@ const SocialLinks = styled.div`
     margin: 0 1rem;
   }
 `
+
+const StyledSocialLink = styled.a`
+  text-decoration: none;
+  color: black;
+
+  :hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+`;
+
 const Footer = () => {
+  const socialLinkIcons = [faFacebook, faInstagram, faEnvelope]
   return (
-    <PageFooter>
-      <SocialLinks>
-        <FontAwesomeIcon icon={faFacebook} />
-        <FontAwesomeIcon icon={faInstagram} />
-        <FontAwesomeIcon icon={faLinkedin} />
-      </SocialLinks>
-      <small>2020 &copy; Anna Dayana</small>
-    </PageFooter>
-  )
-}
+    <StaticQuery
+      query={graphql`
+        query FooterQuery {
+          datoCmsHome {
+            copyright
+          }
+          allDatoCmsSocialProfile(sort: { fields: [position], order: ASC }) {
+            edges {
+              node {
+                profileType
+                url
+              }
+            }
+          }
+        }
+      `}
+      render={(data) => (
+        <PageFooter>
+          <SocialLinks>
+            {
+              data.allDatoCmsSocialProfile.edges.map((profile, idx) => {
+                return (
+                  <StyledSocialLink
+                    key={idx}
+                    href={profile.node.url}
+                    target="_blank"
+                  >
+                    <FontAwesomeIcon icon={socialLinkIcons[idx]} />
+                  </StyledSocialLink>
+                );
+              })
+            }
+          </SocialLinks>
+      <small>{data.datoCmsHome.copyright}</small>
+        </PageFooter>
+      )}
+    />
+  );}
 
 export default Footer

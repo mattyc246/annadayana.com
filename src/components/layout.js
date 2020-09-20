@@ -13,7 +13,7 @@ import styled from "styled-components";
 const Content = styled.main`
   width: 100%;
   min-height: 60vh;
-  padding: 0 7.5vw;
+  padding: 0 5vw;
 `
 
 const TemplateWrapper = ({ children }) => {

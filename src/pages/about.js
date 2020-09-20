@@ -3,34 +3,86 @@ import { graphql } from 'gatsby'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Img from 'gatsby-image'
 import Layout from "../components/layout"
+import styled from "styled-components";
 
-const About = ({ data: { about } }) => (
-  <Layout>
+const AboutWrapper = styled.div`
+  width: 100%;
+  padding: 0 5vw;
+`;
+
+const AboutSection = styled.div`
+  margin: 1.5em auto;
+  width: 100%;
+  column-gap: 2.5em;
+  column-count: 1;
+
+  .item {
+    width: 100%;
+    background: #fff;
+    margin: 0 0 2.5em;
+    -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
+    page-break-inside: avoid; /* Firefox */
+    break-inside: avoid; /* IE 10+ */
+  }
+
+  @media only screen and (min-width: 740px) {
+    column-count: 2;
+  }
+
+  h1 {
+    font-weight: 200;
+    font-size: 48px;
+  }
+`;
+
+const About = ({ data: { about } }) => {
+  return (
+    <Layout>
       <HelmetDatoCms seo={about.seoMetaTags} />
-      <h1>About</h1>
-  </Layout>
-)
+      <AboutWrapper>
+        <AboutSection>
+          <Img
+            className="item"
+            durationFadeIn={1000}
+            fluid={about.photo.fluid}
+            alt={about.title}
+          />
+          <div className="item">
+            <h1>{about.title}</h1>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: about.bioNode.childMarkdownRemark.html,
+                }}
+              ></div>
+          </div>
+        </AboutSection>
+      </AboutWrapper>
+    </Layout>
+  );
+};;
 
 export default About
 
 export const query = graphql`
-  query AboutQuery {
-    about: datoCmsAboutPage {
-      seoMetaTags {
-        ...GatsbyDatoCmsSeoMetaTags
-      }
-      title
-      subtitle
-      photo {
-        fluid(maxWidth: 600, imgixParams: { fm: "jpg", auto: "compress" }) {
-          ...GatsbyDatoCmsSizes
-        }
-      }
-      bioNode {
-        childMarkdownRemark {
-          html
-        }
-      }
-    }
-  }
-`
+         query AboutQuery {
+           about: datoCmsAboutPage {
+             seoMetaTags {
+               ...GatsbyDatoCmsSeoMetaTags
+             }
+             title
+             photo {
+               fluid(
+                 maxWidth: 600
+                 imgixParams: { fm: "jpg", auto: "compress" }
+               ) {
+                 ...GatsbyDatoCmsSizes
+               }
+             }
+             bioNode {
+               childMarkdownRemark {
+                 html
+               }
+             }
+           }
+         }
+       `;
