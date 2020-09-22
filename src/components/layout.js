@@ -9,6 +9,8 @@ import Navbar from "./navbar";
 import MobileMenu from "./mobilemenu"
 import Footer from "./footer";
 import styled from "styled-components";
+import { faArrowAltCircleUp } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Content = styled.main`
   width: 100%;
@@ -34,9 +36,20 @@ const SideFloat = styled.h2`
   }
 `;
 
+const ScrollToTop = styled(FontAwesomeIcon)`
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  font-size: 38px;
+  opacity: ${(props) => (props.showScroll ? "0.8" : "0")};
+  transition: opacity 500ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  cursor: pointer;
+`;
+
 const TemplateWrapper = ({ children }) => {
   const [showMenu, setShowMenu] = useState(false)
   const [themePref, setThemePref] = useState("light")
+  const [showScroll, setShowScroll] = useState(false);
 
   const changeThemePref = () => {
     if(themePref === 'light'){
@@ -48,12 +61,24 @@ const TemplateWrapper = ({ children }) => {
     }
   }
 
+  const goToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   useEffect(() => {
     let storedTheme = localStorage.getItem('themePref')
 
     if(storedTheme){
       setThemePref(storedTheme)
     }
+
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 400) {
+        setShowScroll(true);
+      } else {
+        setShowScroll(false);
+      }
+    });
   }, [])
 
   return (
@@ -91,22 +116,33 @@ const TemplateWrapper = ({ children }) => {
       `}
       render={(data) => (
         <>
-        <HelmetDatoCms
-          favicon={data.datoCmsSite.faviconMetaTags}
-          seo={data.datoCmsHome.seoMetaTags}
-        />
-        <div className={themePref === 'dark' ? 'dark-wrapper' : 'light-wrapper'}>
-          <SideFloat>Anna Dayana — Graphic Designer</SideFloat>
-          <Navbar setShowMenu={setShowMenu} themePref={themePref} changeThemePref={changeThemePref}/>
-          <MobileMenu
-            showMenu={showMenu}
-            setShowMenu={setShowMenu}
-            themePref={themePref}
-            changeThemePref={changeThemePref}
+          <HelmetDatoCms
+            favicon={data.datoCmsSite.faviconMetaTags}
+            seo={data.datoCmsHome.seoMetaTags}
           />
-          <Content>{children}</Content>
-          <Footer />
-        </div>
+          <div
+            className={themePref === "dark" ? "dark-wrapper" : "light-wrapper"}
+          >
+            <SideFloat>Anna Dayana — Graphic Designer</SideFloat>
+            <Navbar
+              setShowMenu={setShowMenu}
+              themePref={themePref}
+              changeThemePref={changeThemePref}
+            />
+            <MobileMenu
+              showMenu={showMenu}
+              setShowMenu={setShowMenu}
+              themePref={themePref}
+              changeThemePref={changeThemePref}
+            />
+            <Content>{children}</Content>
+            <ScrollToTop
+              icon={faArrowAltCircleUp}
+              onClick={() => goToTop()}
+              showScroll={showScroll}
+            />
+            <Footer />
+          </div>
         </>
       )}
     />
