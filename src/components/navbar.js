@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "gatsby";
+import Logo from "../assets/images/logo.jpg";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faMoon, faSun } from "@fortawesome/free-regular-svg-icons";
 
 const Navigator = styled.header`
   width: 100%;
@@ -57,21 +59,35 @@ const StyledIcon = styled(FontAwesomeIcon)`
   }
 `
 
+const StyledThemeSelector = styled(FontAwesomeIcon)`
+  font-size: 24px;
+  opacity: 0.75;
+  display: none;
+  margin-left: auto;
+  :hover {
+    opacity: 1;
+    cursor: pointer;
+  }
 
-const Navbar = ({setShowMenu}) => {
+  @media screen and (min-width: 740px){
+    display: block;
+  }
+`
+
+const StyledLogo = styled(Link)`
+  img {
+    width: 80px;
+    height: 80px;
+  }
+`;
+
+
+const Navbar = ({setShowMenu, changeThemePref, themePref}) => {
   return (
     <Navigator>
-      <div
-        style={{
-          height: "55px",
-          width: "55px",
-          border: "1px solid black",
-          textAlign: "center",
-          padding: "5px",
-        }}
-      >
-        Logo Here
-      </div>
+      <StyledLogo to="/">
+        <img src={Logo} alt="logo" />
+      </StyledLogo>
       <FlexyLinks>
         <Link to="/" activeClassName="active">
           Work
@@ -80,6 +96,7 @@ const Navbar = ({setShowMenu}) => {
           About
         </Link>
       </FlexyLinks>
+      <StyledThemeSelector icon={themePref === 'dark' ? faSun : faMoon} onClick={() => changeThemePref()} />
       <StyledIcon icon={faBars} onClick={() => setShowMenu(true)} />
     </Navigator>
   );

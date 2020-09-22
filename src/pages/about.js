@@ -18,7 +18,6 @@ const AboutSection = styled.div`
 
   .item {
     width: 100%;
-    background: #fff;
     margin: 0 0 2.5em;
     -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
     page-break-inside: avoid; /* Firefox */
@@ -35,6 +34,10 @@ const AboutSection = styled.div`
   }
 `;
 
+const StyledContent = styled.div`
+  letter-spacing: 1px;
+`
+
 const About = ({ data: { about } }) => {
   return (
     <Layout>
@@ -49,11 +52,11 @@ const About = ({ data: { about } }) => {
           />
           <div className="item">
             <h1>{about.title}</h1>
-              <div
+              <StyledContent
                 dangerouslySetInnerHTML={{
                   __html: about.bioNode.childMarkdownRemark.html,
                 }}
-              ></div>
+              ></StyledContent>
           </div>
         </AboutSection>
       </AboutWrapper>

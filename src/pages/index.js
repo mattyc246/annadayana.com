@@ -22,10 +22,19 @@ const Masonry = styled.div`
     page-break-inside: avoid; /* Firefox */
     break-inside: avoid; /* IE 10+ */
 
+    :hover {
+      cursor: pointer;
+      opacity: 0.75;
+      transition: opacity 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
   }
 
   @media only screen and (min-width: 740px) {
     column-count: 2;
+  }
+
+  @media only screen and (min-width: 940px) {
+    column-count: 3;
   }
 `;
 
