@@ -23,7 +23,6 @@ const Overlay = styled.div`
 `;
 
 const Lightbox = ({ active, image, title, setActiveLightBox }) => {
-  console.log(image)
   return (
     <Overlay active={active} onClick={() => setActiveLightBox(null)}>
       <Img
