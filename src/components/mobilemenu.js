@@ -61,7 +61,7 @@ const Menu = styled.nav`
 
 const SideFloat = styled.h2`
   position: fixed;
-  top: 50%;
+  top: 25%;
   right: 3.5vw;
   margin: 0;
   text-align: center;

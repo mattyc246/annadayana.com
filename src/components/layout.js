@@ -19,7 +19,7 @@ const Content = styled.main`
 const SideFloat = styled.h2`
   display: none;
   position: fixed;
-  top: 50%;
+  top: 25%;
   right: 1.5vw;
   margin: 0;
   text-align: center;

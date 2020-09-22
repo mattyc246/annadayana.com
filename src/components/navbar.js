@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
-import Logo from "../assets/images/logo.jpg";
+import White from "../assets/images/white.png";
+import Black from "../assets/images/black.png";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -86,7 +87,7 @@ const Navbar = ({setShowMenu, changeThemePref, themePref}) => {
   return (
     <Navigator>
       <StyledLogo to="/">
-        <img src={Logo} alt="logo" />
+        <img src={themePref === 'dark' ? White : Black} alt="logo" />
       </StyledLogo>
       <FlexyLinks>
         <Link to="/" activeClassName="active">
