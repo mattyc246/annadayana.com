@@ -21,6 +21,7 @@ const Masonry = styled.div`
     -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
     page-break-inside: avoid; /* Firefox */
     break-inside: avoid; /* IE 10+ */
+
   }
 
   @media only screen and (min-width: 740px) {
