@@ -1,4 +1,4 @@
-import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
+import { faMoon, faSun, faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "gatsby";
 import React from "react";
@@ -9,7 +9,7 @@ const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background-color: white;
+  background-color: rgba(255,255,255,0.9);
   height: 100vh;
   width: 100vw;
   padding: 5vw;
@@ -59,18 +59,47 @@ const Menu = styled.nav`
   }
 `;
 
-const MobileMenu = ({ showMenu, setShowMenu }) => {
+const SideFloat = styled.h2`
+  position: fixed;
+  top: 25%;
+  right: 3.5vw;
+  margin: 0;
+  text-align: center;
+  /* transform: rotate(90deg); */
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 18px;
+  font-weight: 300;
+`;
+
+const StyledThemeSelector = styled(FontAwesomeIcon)`
+  font-size: 28px;
+  opacity: 0.75;
+
+  :hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+`
+
+const MobileMenu = ({ showMenu, setShowMenu, changeThemePref, themePref }) => {
   return (
-    <Overlay showMenu={showMenu}>
+    <Overlay className="overlay" showMenu={showMenu}>
       <FontAwesomeIcon
         className="close"
         icon={faTimesCircle}
         onClick={() => setShowMenu(false)}
       />
+      <SideFloat>Anna Dayana — Graphic Designer</SideFloat>
       <Menu>
-        <Link to="/" activeClassName="active">Work</Link>
-        <Link to="/about" activeClassName="active">About</Link>
+        <Link to="/" activeClassName="active">
+          Work
+        </Link>
+        <Link to="/about" activeClassName="active">
+          About
+        </Link>
       </Menu>
+      <StyledThemeSelector icon={themePref === 'dark' ? faSun : faMoon} onClick={() => changeThemePref()} />
     </Overlay>
   );
 };
