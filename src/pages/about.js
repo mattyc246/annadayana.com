@@ -36,6 +36,7 @@ const AboutSection = styled.div`
 
 const StyledContent = styled.div`
   letter-spacing: 1px;
+  text-align: justify;
 `
 
 const About = ({ data: { about } }) => {

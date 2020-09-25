@@ -9,8 +9,9 @@ import Navbar from "./navbar";
 import MobileMenu from "./mobilemenu"
 import Footer from "./footer";
 import styled from "styled-components";
-import { faArrowAltCircleUp } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+
 
 const Content = styled.main`
   width: 100%;
@@ -137,7 +138,7 @@ const TemplateWrapper = ({ children }) => {
             />
             <Content>{children}</Content>
             <ScrollToTop
-              icon={faArrowAltCircleUp}
+              icon={faChevronUp}
               onClick={() => goToTop()}
               showScroll={showScroll}
             />
