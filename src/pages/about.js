@@ -25,7 +25,7 @@ const AboutSection = styled.div`
   }
 
   @media only screen and (min-width: 740px) {
-    column-count: 2;
+    column-count: 1;
   }
 
   h1 {
@@ -45,12 +45,12 @@ const About = ({ data: { about } }) => {
       <HelmetDatoCms seo={about.seoMetaTags} />
       <AboutWrapper>
         <AboutSection>
-          <Img
+          {/* <Img
             className="item"
             durationFadeIn={1000}
             fluid={about.photo.fluid}
             alt={about.title}
-          />
+          /> */}
           <div className="item">
             <h1>{about.title}</h1>
               <StyledContent
