@@ -15,16 +15,6 @@ module.exports = {
         apiToken: process.env.DATO_API_TOKEN,
       },
     },
-    {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Nunito`,
-            variants: [`200`, `300`,   `400`,   `600`,   `700`],
-          },
-        ],
-      },
-    },
+    `gatsby-plugin-preload-fonts`
   ],
 };
