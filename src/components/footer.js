@@ -1,8 +1,8 @@
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react'
-import {StaticQuery} from "gatsby"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { StaticQuery } from "gatsby";
 import styled from "styled-components";
 
 const PageFooter = styled.footer`
@@ -14,11 +14,10 @@ const PageFooter = styled.footer`
   align-items: center;
   justify-content: space-around;
 
-
-  small{
+  small {
     font-weight: 200;
   }
-`
+`;
 const SocialLinks = styled.div`
   display: flex;
   flex-direction: row;
@@ -29,7 +28,7 @@ const SocialLinks = styled.div`
   svg {
     margin: 0 1rem;
   }
-`
+`;
 
 const StyledSocialLink = styled.a`
   text-decoration: none;
@@ -42,7 +41,7 @@ const StyledSocialLink = styled.a`
 `;
 
 const Footer = () => {
-  const socialLinkIcons = [faFacebook, faInstagram, faEnvelope]
+  const socialLinkIcons = [faFacebook, faInstagram, faEnvelope];
   return (
     <StaticQuery
       query={graphql`
@@ -63,24 +62,25 @@ const Footer = () => {
       render={(data) => (
         <PageFooter>
           <SocialLinks>
-            {
-              data.allDatoCmsSocialProfile.edges.map((profile, idx) => {
-                return (
-                  <StyledSocialLink
-                    key={idx}
-                    href={profile.node.url}
-                    target="_blank"
-                  >
-                    <FontAwesomeIcon icon={socialLinkIcons[idx]} />
-                  </StyledSocialLink>
-                );
-              })
-            }
+            {data.allDatoCmsSocialProfile.edges.map((profile, idx) => {
+              return (
+                <StyledSocialLink
+                  key={idx}
+                  href={profile.node.url}
+                  target="_blank"
+                >
+                  <FontAwesomeIcon icon={socialLinkIcons[idx]} />
+                </StyledSocialLink>
+              );
+            })}
           </SocialLinks>
-      <small>{data.datoCmsHome.copyright}</small>
+          <small>
+            {new Date().getFullYear()} {data.datoCmsHome.copyright}
+          </small>
         </PageFooter>
       )}
     />
-  );}
+  );
+};
 
-export default Footer
+export default Footer;

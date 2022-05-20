@@ -16,7 +16,7 @@ const Navigator = styled.header`
   align-items: center;
   padding: 0 5vw;
 
-  @media screen and (min-width: 740px){
+  @media screen and (min-width: 740px) {
     justify-content: flex-start;
   }
 `;
@@ -41,7 +41,7 @@ const FlexyLinks = styled.nav`
     opacity: 0.75;
   }
 
-  @media screen and (min-width: 740px){
+  @media screen and (min-width: 740px) {
     display: block;
   }
 `;
@@ -55,10 +55,10 @@ const StyledIcon = styled(FontAwesomeIcon)`
     cursor: pointer;
   }
 
-  @media screen and (min-width: 740px){
+  @media screen and (min-width: 740px) {
     display: none;
   }
-`
+`;
 
 const StyledThemeSelector = styled(FontAwesomeIcon)`
   font-size: 24px;
@@ -70,10 +70,10 @@ const StyledThemeSelector = styled(FontAwesomeIcon)`
     cursor: pointer;
   }
 
-  @media screen and (min-width: 740px){
+  @media screen and (min-width: 740px) {
     display: block;
   }
-`
+`;
 
 const StyledLogo = styled(Link)`
   img {
@@ -82,12 +82,11 @@ const StyledLogo = styled(Link)`
   }
 `;
 
-
-const Navbar = ({setShowMenu, changeThemePref, themePref}) => {
+const Navbar = ({ setShowMenu, changeThemePref, themePref }) => {
   return (
     <Navigator>
       <StyledLogo to="/">
-        <img src={themePref === 'dark' ? White : Black} alt="logo" />
+        <img src={themePref === "dark" ? White : Black} alt="logo" />
       </StyledLogo>
       <FlexyLinks>
         <Link to="/" activeClassName="active">
@@ -96,8 +95,14 @@ const Navbar = ({setShowMenu, changeThemePref, themePref}) => {
         <Link to="/about" activeClassName="active">
           About
         </Link>
+        <Link to="/projects" activeClassName="active">
+          Projects
+        </Link>
       </FlexyLinks>
-      <StyledThemeSelector icon={themePref === 'dark' ? faSun : faMoon} onClick={() => changeThemePref()} />
+      <StyledThemeSelector
+        icon={themePref === "dark" ? faSun : faMoon}
+        onClick={() => changeThemePref()}
+      />
       <StyledIcon icon={faBars} onClick={() => setShowMenu(true)} />
     </Navigator>
   );
