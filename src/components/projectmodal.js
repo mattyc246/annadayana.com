@@ -61,11 +61,7 @@ const ProjectModal = (props) => {
   }, []);
 
   return (
-    <Overlay
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
+    <Overlay>
       <Background />
       <CloseWrap>
         <FontAwesomeIcon onClick={handleClose} icon={faTimes} />
