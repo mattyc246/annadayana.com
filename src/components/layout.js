@@ -138,7 +138,7 @@ const TemplateWrapper = ({ children }) => {
             <ScrollToTop
               icon={faChevronUp}
               onClick={() => goToTop()}
-              showscroll={showScroll}
+              showscroll={showScroll ? showScroll : undefined}
             />
             <Footer />
           </div>
