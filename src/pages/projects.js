@@ -17,7 +17,7 @@ const Title = styled.h1`
 const ProjectsGrid = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 1rem;
 `;
 const GridItem = styled.div`
@@ -100,6 +100,7 @@ const Projects = ({ data }) => {
                     handleClose={handleClose}
                     title={title}
                     artworks={artworks}
+                    isOpen={activeModal === id}
                   />
                 )}
               </GridItem>

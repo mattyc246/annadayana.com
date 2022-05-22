@@ -41,10 +41,12 @@ const Content = styled.div`
 `;
 const Title = styled.h2`
   font-size: 1.5rem;
+  font-weight: 200;
   z-index: 1;
 `;
 const ImagesWrapper = styled.div`
   margin: 1rem 0;
+  margin-bottom: 2rem;
   padding: 0 1.25rem;
   display: flex;
   flex-direction: column;
@@ -59,7 +61,11 @@ const ProjectModal = (props) => {
   }, []);
 
   return (
-    <Overlay>
+    <Overlay
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <Background />
       <CloseWrap>
         <FontAwesomeIcon onClick={handleClose} icon={faTimes} />
