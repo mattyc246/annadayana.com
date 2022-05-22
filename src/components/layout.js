@@ -40,7 +40,7 @@ const ScrollToTop = styled(FontAwesomeIcon)`
   bottom: 15px;
   left: 15px;
   font-size: 38px;
-  opacity: ${(props) => (props.showScroll ? "0.8" : "0")};
+  opacity: ${(props) => (props.showscroll ? "0.8" : "0")};
   transition: opacity 500ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
   cursor: pointer;
 `;
@@ -138,7 +138,7 @@ const TemplateWrapper = ({ children }) => {
             <ScrollToTop
               icon={faChevronUp}
               onClick={() => goToTop()}
-              showScroll={showScroll}
+              showscroll={showScroll}
             />
             <Footer />
           </div>
