@@ -15,6 +15,7 @@ const Overlay = styled.div`
   height: 100vh;
   overflow: auto;
   padding: 0 1rem;
+  z-index: 99999;
 `;
 const Background = styled.div`
   position: fixed;
@@ -23,7 +24,7 @@ const Background = styled.div`
   height: 100%;
   width: 100%;
   background-color: black;
-  opacity: 0.9;
+  opacity: 0.8;
 `;
 const CloseWrap = styled.div`
   position: fixed;
@@ -40,8 +41,8 @@ const Content = styled.div`
   padding-top: 3rem;
 `;
 const Title = styled.h2`
-  font-size: 1.5rem;
   font-weight: 200;
+  font-size: 2rem;
   z-index: 1;
 `;
 const ImagesWrapper = styled.div`
@@ -70,9 +71,13 @@ const ProjectModal = (props) => {
         <ImagesWrapper>
           {title && <Title>{title}</Title>}
           {artworks?.map((artwork) => {
-            console.log(artwork);
             return (
-              <Img durationFadeIn={1000} fluid={artwork.fluid} alt={title} />
+              <Img
+                key={artwork?.fluid?.base64}
+                durationFadeIn={1000}
+                fluid={artwork?.fluid}
+                alt={title}
+              />
             );
           })}
         </ImagesWrapper>

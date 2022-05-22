@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import styled from "styled-components";
-import { Link } from "gatsby";
+import { Link, graphql } from "gatsby";
 
 import Img from "gatsby-image";
 
@@ -10,18 +10,19 @@ import ProjectModal from "../components/projectmodal";
 const SectionWrapper = styled.div`
   padding: 0 5vw;
 `;
-const Title = styled.h1`
-  font-weight: 200;
-  font-size: 48px;
-`;
-const ProjectsGrid = styled.div`
+const Masonry = styled.div`
+  margin: 1.5rem auto;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 1rem;
-`;
-const GridItem = styled.div`
-  padding: 1rem;
+  column-gap: 2.5em;
+  column-count: 1;
+
+  @media only screen and (min-width: 740px) {
+    column-count: 2;
+  }
+
+  @media only screen and (min-width: 940px) {
+    column-count: 3;
+  }
 `;
 const Item = styled.div`
   width: 100%;
@@ -72,20 +73,20 @@ const Projects = ({ data }) => {
   return (
     <Layout>
       <SectionWrapper>
-        <Title>Projects</Title>
-        <ProjectsGrid>
+        <Masonry>
           {data.allDatoCmsProject.edges.map((edge) => {
             const {
               node: { coverImage, id, title, slug, artworks },
             } = edge;
             return (
-              <GridItem key={id}>
+              <Fragment key={id}>
                 <Link
                   to={`/projects/${slug}`}
                   onClick={(e) => handleClickProject(e, id)}
                 >
                   <Item>
                     <Img
+                      className="item"
                       durationFadeIn={1000}
                       fluid={coverImage.fluid}
                       alt={title}
@@ -103,10 +104,10 @@ const Projects = ({ data }) => {
                     isOpen={activeModal === id}
                   />
                 )}
-              </GridItem>
+              </Fragment>
             );
           })}
-        </ProjectsGrid>
+        </Masonry>
       </SectionWrapper>
     </Layout>
   );
