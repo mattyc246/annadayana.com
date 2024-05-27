@@ -56,8 +56,6 @@ const InvisibleButton = styled.button`
 const IndexPage = ({ data }) => {
   const [activeLightBox, setActiveLightBox] = useState(null);
 
-  console.log(data.allDatoCmsWork);
-
   return (
     <MasonryWrapper>
       <Masonry>
@@ -66,7 +64,6 @@ const IndexPage = ({ data }) => {
             node: { coverImage, id, title }
           } = edge;
           const image = getImage(coverImage);
-          console.log(image);
           return (
             <Fragment key={id}>
               <InvisibleButton onClick={() => setActiveLightBox(idx)}>
