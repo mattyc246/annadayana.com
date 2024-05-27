@@ -1,23 +1,20 @@
-/* eslint-disable jsx-a11y/anchor-has-content, jsx-a11y/anchor-is-valid*/
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { StaticQuery, graphql } from 'gatsby';
+import { HelmetDatoCms } from 'gatsby-source-datocms';
 
-import React, {useState, useEffect} from "react";
-import { StaticQuery, graphql } from "gatsby";
-import { HelmetDatoCms } from "gatsby-source-datocms";
-
-import "../styles/base.scss";
-import Navbar from "./navbar";
-import MobileMenu from "./mobilemenu"
-import Footer from "./footer";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
-
+import '../styles/base.scss';
+import Navbar from './navbar';
+import MobileMenu from './mobilemenu';
+import Footer from './footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 const Content = styled.main`
   width: 100%;
   min-height: 60vh;
   padding: 0 5vw;
-`
+`;
 
 const SideFloat = styled.h2`
   display: none;
@@ -26,13 +23,12 @@ const SideFloat = styled.h2`
   right: 1.5vw;
   margin: 0;
   text-align: center;
-  /* transform: rotate(90deg); */
   writing-mode: vertical-rl;
   text-orientation: mixed;
   font-size: 18px;
   font-weight: 300;
 
-  @media screen and (min-width: 740px){
+  @media screen and (min-width: 740px) {
     display: block;
   }
 `;
@@ -42,45 +38,45 @@ const ScrollToTop = styled(FontAwesomeIcon)`
   bottom: 15px;
   left: 15px;
   font-size: 38px;
-  opacity: ${(props) => (props.showScroll ? "0.8" : "0")};
+  opacity: ${(props) => (props.showScroll ? '0.8' : '0')};
   transition: opacity 500ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
   cursor: pointer;
 `;
 
 const TemplateWrapper = ({ children }) => {
-  const [showMenu, setShowMenu] = useState(false)
-  const [themePref, setThemePref] = useState("light")
+  const [showMenu, setShowMenu] = useState(false);
+  const [themePref, setThemePref] = useState('light');
   const [showScroll, setShowScroll] = useState(false);
 
   const changeThemePref = () => {
-    if(themePref === 'light'){
-      localStorage.setItem('themePref', 'dark')
-      setThemePref('dark')
+    if (themePref === 'light') {
+      localStorage.setItem('themePref', 'dark');
+      setThemePref('dark');
     } else {
-      localStorage.setItem('themePref', 'light')
-      setThemePref('light')
+      localStorage.setItem('themePref', 'light');
+      setThemePref('light');
     }
-  }
+  };
 
   const goToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {
-    let storedTheme = localStorage.getItem('themePref')
+    let storedTheme = localStorage.getItem('themePref');
 
-    if(storedTheme){
-      setThemePref(storedTheme)
+    if (storedTheme) {
+      setThemePref(storedTheme);
     }
 
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       if (window.pageYOffset > 400) {
         setShowScroll(true);
       } else {
         setShowScroll(false);
       }
     });
-  }, [])
+  }, []);
 
   return (
     <StaticQuery
@@ -105,7 +101,7 @@ const TemplateWrapper = ({ children }) => {
             }
             copyright
           }
-          allDatoCmsSocialProfile(sort: { fields: [position], order: ASC }) {
+          allDatoCmsSocialProfile(sort: { position: ASC }) {
             edges {
               node {
                 profileType
@@ -122,7 +118,7 @@ const TemplateWrapper = ({ children }) => {
             seo={data.datoCmsHome.seoMetaTags}
           />
           <div
-            className={themePref === "dark" ? "dark-wrapper" : "light-wrapper"}
+            className={themePref === 'dark' ? 'dark-wrapper' : 'light-wrapper'}
           >
             <SideFloat>Anna Dayana — Graphic Designer</SideFloat>
             <Navbar

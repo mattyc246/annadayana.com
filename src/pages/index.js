@@ -1,13 +1,13 @@
-import React, { Fragment, useState } from 'react'
-import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
-import Layout from "../components/layout"
-import styled from 'styled-components'
-import Lightbox from '../components/lightbox'
+import React, { Fragment, useState } from 'react';
+import styled from 'styled-components';
+import { graphql } from 'gatsby';
+
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import Lightbox from '../components/lightbox';
 
 const MasonryWrapper = styled.div`
   width: 100%;
-`
+`;
 
 const Masonry = styled.div`
   margin: 1.5em auto;
@@ -22,7 +22,7 @@ const Masonry = styled.div`
     -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
     page-break-inside: avoid; /* Firefox */
     break-inside: avoid; /* IE 10+ */
-    box-shadow: 10px 10px 25px rgba(0,0,0,0.4);
+    box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.4);
 
     :hover {
       cursor: pointer;
@@ -51,53 +51,61 @@ const InvisibleButton = styled.button`
   outline: none;
   border: 0;
   background-color: transparent;
-`
+`;
 
 const IndexPage = ({ data }) => {
   const [activeLightBox, setActiveLightBox] = useState(null);
 
-  return  (
-      <Layout>
-        <MasonryWrapper>
-          <Masonry>
-            {
-              data.allDatoCmsWork.edges.map((edge, idx) => {
-                const {node: {coverImage, id, title}} = edge
-                return(
-                  <Fragment key={id}>
-                    <InvisibleButton onClick={() => setActiveLightBox(idx)}>
-                      <Img className="item" durationFadeIn={1000} fluid={coverImage.fluid} alt={title} />
-                    </InvisibleButton>
-                    <Lightbox active={activeLightBox === idx ? true : false} setActiveLightBox={setActiveLightBox} image={coverImage.fluid} title={title}/>
-                  </Fragment>
-                )
-              })
-            }
-          </Masonry>
-        </MasonryWrapper>
-      </Layout>
-  );;
-};;
+  console.log(data.allDatoCmsWork);
 
-export default IndexPage
+  return (
+    <MasonryWrapper>
+      <Masonry>
+        {data.allDatoCmsWork.edges.map((edge, idx) => {
+          const {
+            node: { coverImage, id, title }
+          } = edge;
+          const image = getImage(coverImage);
+          console.log(image);
+          return (
+            <Fragment key={id}>
+              <InvisibleButton onClick={() => setActiveLightBox(idx)}>
+                <GatsbyImage
+                  className="item"
+                  image={image}
+                  durationFadeIn={1000}
+                  fluid={coverImage.fluid}
+                  alt={title}
+                />
+              </InvisibleButton>
+              <Lightbox
+                active={activeLightBox === idx ? true : false}
+                setActiveLightBox={setActiveLightBox}
+                image={image}
+                title={title}
+              />
+            </Fragment>
+          );
+        })}
+      </Masonry>
+    </MasonryWrapper>
+  );
+};
+
+export default IndexPage;
 
 export const query = graphql`
-         query IndexQuery {
-           allDatoCmsWork(sort: { fields: [position], order: ASC }) {
-             edges {
-               node {
-                 id
-                 title
-                 coverImage {
-                   fluid(
-                     maxWidth: 450
-                     imgixParams: { fm: "jpg", auto: "compress" }
-                   ) {
-                     ...GatsbyDatoCmsSizes
-                   }
-                 }
-               }
-             }
-           }
-         }
-       `;
+  query IndexQuery {
+    allDatoCmsWork(sort: { position: ASC }) {
+      edges {
+        node {
+          id
+          title
+          coverImage {
+            gatsbyImageData(width: 450, placeholder: BLURRED)
+          }
+        }
+      }
+    }
+  }
+`;

@@ -1,9 +1,7 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { HelmetDatoCms } from 'gatsby-source-datocms'
-import Img from 'gatsby-image'
-import Layout from "../components/layout"
-import styled from "styled-components";
+import React from 'react';
+import { graphql } from 'gatsby';
+import { HelmetDatoCms } from 'gatsby-source-datocms';
+import styled from 'styled-components';
 
 const AboutWrapper = styled.div`
   width: 100%;
@@ -37,56 +35,47 @@ const AboutSection = styled.div`
 const StyledContent = styled.div`
   letter-spacing: 1px;
   text-align: justify;
-`
+`;
 
 const About = ({ data: { about } }) => {
   return (
-    <Layout>
+    <>
       <HelmetDatoCms seo={about.seoMetaTags} />
       <AboutWrapper>
         <AboutSection>
-          {/* <Img
-            className="item"
-            durationFadeIn={1000}
-            fluid={about.photo.fluid}
-            alt={about.title}
-          /> */}
           <div className="item">
             <h1>{about.title}</h1>
-              <StyledContent
-                dangerouslySetInnerHTML={{
-                  __html: about.bioNode.childMarkdownRemark.html,
-                }}
-              ></StyledContent>
+            <StyledContent
+              dangerouslySetInnerHTML={{
+                __html: about.bioNode.childMarkdownRemark.html
+              }}
+            ></StyledContent>
           </div>
         </AboutSection>
       </AboutWrapper>
-    </Layout>
+    </>
   );
-};;
+};
 
-export default About
+export default About;
 
 export const query = graphql`
-         query AboutQuery {
-           about: datoCmsAboutPage {
-             seoMetaTags {
-               ...GatsbyDatoCmsSeoMetaTags
-             }
-             title
-             photo {
-               fluid(
-                 maxWidth: 600
-                 imgixParams: { fm: "jpg", auto: "compress" }
-               ) {
-                 ...GatsbyDatoCmsSizes
-               }
-             }
-             bioNode {
-               childMarkdownRemark {
-                 html
-               }
-             }
-           }
-         }
-       `;
+  query AboutQuery {
+    about: datoCmsAboutPage {
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
+      title
+      photo {
+        fluid(maxWidth: 600, imgixParams: { fm: "jpg", auto: "compress" }) {
+          ...GatsbyDatoCmsSizes
+        }
+      }
+      bioNode {
+        childMarkdownRemark {
+          html
+        }
+      }
+    }
+  }
+`;

@@ -4,30 +4,28 @@
   "version": "1.0.0",
   "author": "Stefano Verna <s.verna@datocms.com>",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.30",
-    "@fortawesome/free-brands-svg-icons": "^5.14.0",
-    "@fortawesome/free-regular-svg-icons": "^5.14.0",
-    "@fortawesome/free-solid-svg-icons": "^5.14.0",
-    "@fortawesome/react-fontawesome": "^0.1.11",
-    "babel-plugin-styled-components": "^1.11.1",
-    "dotenv": "^8.1.0",
-    "gatsby": "^2.22.10",
-    "gatsby-image": "^2.2.34",
-    "gatsby-plugin-preload-fonts": "^2.4.0",
-    "gatsby-plugin-react-helmet": "^3.1.16",
-    "gatsby-plugin-sass": "^2.1.24",
-    "gatsby-plugin-styled-components": "^3.3.11",
-    "gatsby-source-datocms": "^2.2.4",
-    "gatsby-source-filesystem": "^2.1.40",
-    "gatsby-transformer-remark": "^2.6.39",
-    "node-sass": "^4.13.0",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "react-helmet": "^5.2.0",
-    "react-masonry-component": "^6.2.1",
-    "react-slick": "^0.25.2",
-    "slick-carousel": "^1.8.1",
-    "styled-components": "^5.2.0"
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "babel-plugin-styled-components": "^2.1.4",
+    "dotenv": "^16.4.5",
+    "gatsby": "^5.13.5",
+    "gatsby-plugin-image": "^3.13.1",
+    "gatsby-plugin-preload-fonts": "^4.13.1",
+    "gatsby-plugin-react-helmet": "^6.13.1",
+    "gatsby-plugin-sass": "^6.13.1",
+    "gatsby-plugin-sharp": "^5.13.1",
+    "gatsby-plugin-styled-components": "^6.13.1",
+    "gatsby-source-datocms": "^5.1.5",
+    "gatsby-transformer-remark": "^6.13.1",
+    "gatsby-transformer-sharp": "^5.13.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
+    "sass": "^1.77.2",
+    "styled-components": "^6.1.11"
   },
   "keywords": [
     "gatsby"
@@ -41,6 +39,6 @@
     "preload-fonts": "gatsby-preload-fonts"
   },
   "devDependencies": {
-    "prettier": "^1.17.0"
+    "prettier": "^3.2.5"
   }
 }
