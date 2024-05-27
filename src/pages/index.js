@@ -70,7 +70,7 @@ const IndexPage = ({ data }) => {
                 <GatsbyImage
                   className="item"
                   image={image}
-                  durationFadeIn={1000}
+                  loading="lazy"
                   fluid={coverImage.fluid}
                   alt={title}
                 />

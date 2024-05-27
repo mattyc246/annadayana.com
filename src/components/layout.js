@@ -12,6 +12,7 @@ import MobileMenu from './mobilemenu';
 import Footer from './footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+
 config.autoAddCss = false; /* eslint-disable import/first */
 
 const Content = styled.main`

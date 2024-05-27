@@ -26,7 +26,7 @@ const Lightbox = ({ active, image, title, setActiveLightBox }) => {
     <Overlay active={active} onClick={() => setActiveLightBox(null)}>
       <GatsbyImage
         className="image-container"
-        durationFadeIn={500}
+        loading="lazy"
         image={image}
         alt={title}
         imgStyle={{ objectFit: 'contain' }}
