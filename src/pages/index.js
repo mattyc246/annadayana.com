@@ -56,10 +56,33 @@ const InvisibleButton = styled.button`
 const IndexPage = ({ data }) => {
   const [activeLightBox, setActiveLightBox] = useState(null);
 
+  console.log(data);
+
   return (
     <MasonryWrapper>
       <Masonry>
-        {data.allDatoCmsWork.edges.map((edge, idx) => {
+        {data.allCloudinaryMedia.nodes.map((edge, idx) => {
+          const image = getImage(edge);
+          return (
+            <Fragment key={edge.asset_id}>
+              <InvisibleButton onClick={() => setActiveLightBox(idx)}>
+                <GatsbyImage
+                  className="item"
+                  image={image}
+                  loading="lazy"
+                  alt={edge.public_id}
+                />
+              </InvisibleButton>
+              <Lightbox
+                active={activeLightBox === idx ? true : false}
+                setActiveLightBox={setActiveLightBox}
+                image={image}
+                title={edge.public_id}
+              />
+            </Fragment>
+          );
+        })}
+        {/* {data.allDatoCmsWork.edges.map((edge, idx) => {
           const {
             node: { coverImage, id, title }
           } = edge;
@@ -83,7 +106,7 @@ const IndexPage = ({ data }) => {
               />
             </Fragment>
           );
-        })}
+        })} */}
       </Masonry>
     </MasonryWrapper>
   );
@@ -102,6 +125,13 @@ export const query = graphql`
             gatsbyImageData(width: 450, placeholder: BLURRED)
           }
         }
+      }
+    }
+    allCloudinaryMedia(filter: { folder: { eq: "annadayana" } }) {
+      nodes {
+        asset_id
+        public_id
+        gatsbyImageData(placeholder: BLURRED, width: 450)
       }
     }
   }
