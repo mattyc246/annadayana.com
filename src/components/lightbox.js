@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import Img from "gatsby-image";
+import React from 'react';
+import styled from 'styled-components';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const Overlay = styled.div`
-  display: ${(props) => (props.active === true ? "block" : "none")};
+  display: ${(props) => (props.active === true ? 'block' : 'none')};
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -19,18 +19,17 @@ const Overlay = styled.div`
     transform: translate(-50%, -50%);
     max-height: 90vh;
   }
-
 `;
 
 const Lightbox = ({ active, image, title, setActiveLightBox }) => {
   return (
     <Overlay active={active} onClick={() => setActiveLightBox(null)}>
-      <Img
+      <GatsbyImage
         className="image-container"
         durationFadeIn={500}
-        fluid={image}
+        image={image}
         alt={title}
-        imgStyle={{ objectFit: "contain" }}
+        imgStyle={{ objectFit: 'contain' }}
       />
     </Overlay>
   );

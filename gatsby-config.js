@@ -1,8 +1,8 @@
-require('dotenv').config()
+require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
-    title: `Creative Portfolio`,
+    title: `Creative Portfolio`
   },
   plugins: [
     `gatsby-plugin-styled-components`,
@@ -12,9 +12,12 @@ module.exports = {
     {
       resolve: `gatsby-source-datocms`,
       options: {
-        apiToken: process.env.DATO_API_TOKEN,
-      },
+        apiToken: process.env.DATO_API_TOKEN
+      }
     },
-    `gatsby-plugin-preload-fonts`
-  ],
+    `gatsby-plugin-preload-fonts`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`
+  ]
 };
