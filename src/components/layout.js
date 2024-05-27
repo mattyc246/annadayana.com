@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+// Prevent fontawesome from adding its CSS since we did it manually above:
+import { config } from '@fortawesome/fontawesome-svg-core';
 
 import '../styles/base.scss';
 import Navbar from './navbar';
@@ -9,6 +12,7 @@ import MobileMenu from './mobilemenu';
 import Footer from './footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+config.autoAddCss = false; /* eslint-disable import/first */
 
 const Content = styled.main`
   width: 100%;
