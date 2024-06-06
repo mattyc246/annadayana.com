@@ -59,27 +59,23 @@ const IndexPage = ({ data }) => {
   return (
     <MasonryWrapper>
       <Masonry>
-        {data.allDatoCmsWork.edges.map((edge, idx) => {
-          const {
-            node: { coverImage, id, title }
-          } = edge;
-          const image = getImage(coverImage);
+        {data.allCloudinaryMedia.nodes.map((edge, idx) => {
+          const image = getImage(edge);
           return (
-            <Fragment key={id}>
+            <Fragment key={edge.asset_id}>
               <InvisibleButton onClick={() => setActiveLightBox(idx)}>
                 <GatsbyImage
                   className="item"
                   image={image}
                   loading="lazy"
-                  fluid={coverImage.fluid}
-                  alt={title}
+                  alt={edge.public_id}
                 />
               </InvisibleButton>
               <Lightbox
                 active={activeLightBox === idx ? true : false}
                 setActiveLightBox={setActiveLightBox}
                 image={image}
-                title={title}
+                title={edge.public_id}
               />
             </Fragment>
           );
@@ -98,10 +94,14 @@ export const query = graphql`
         node {
           id
           title
-          coverImage {
-            gatsbyImageData(width: 450, placeholder: BLURRED)
-          }
         }
+      }
+    }
+    allCloudinaryMedia(filter: { folder: { eq: "annadayana" } }) {
+      nodes {
+        asset_id
+        public_id
+        gatsbyImageData(placeholder: BLURRED, width: 450)
       }
     }
   }
