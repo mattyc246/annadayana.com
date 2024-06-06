@@ -56,8 +56,6 @@ const InvisibleButton = styled.button`
 const IndexPage = ({ data }) => {
   const [activeLightBox, setActiveLightBox] = useState(null);
 
-  console.log(data);
-
   return (
     <MasonryWrapper>
       <Masonry>
@@ -82,31 +80,6 @@ const IndexPage = ({ data }) => {
             </Fragment>
           );
         })}
-        {/* {data.allDatoCmsWork.edges.map((edge, idx) => {
-          const {
-            node: { coverImage, id, title }
-          } = edge;
-          const image = getImage(coverImage);
-          return (
-            <Fragment key={id}>
-              <InvisibleButton onClick={() => setActiveLightBox(idx)}>
-                <GatsbyImage
-                  className="item"
-                  image={image}
-                  loading="lazy"
-                  fluid={coverImage.fluid}
-                  alt={title}
-                />
-              </InvisibleButton>
-              <Lightbox
-                active={activeLightBox === idx ? true : false}
-                setActiveLightBox={setActiveLightBox}
-                image={image}
-                title={title}
-              />
-            </Fragment>
-          );
-        })} */}
       </Masonry>
     </MasonryWrapper>
   );
@@ -121,9 +94,6 @@ export const query = graphql`
         node {
           id
           title
-          coverImage {
-            gatsbyImageData(width: 450, placeholder: BLURRED)
-          }
         }
       }
     }
