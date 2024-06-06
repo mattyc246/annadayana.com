@@ -1,15 +1,19 @@
-import { faMoon, faSun, faTimesCircle } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "gatsby";
-import React from "react";
-import styled from "styled-components";
+import {
+  faMoon,
+  faSun,
+  faTimesCircle
+} from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'gatsby';
+import React from 'react';
+import styled from 'styled-components';
 
 const Overlay = styled.div`
-  display: ${(props) => (props.showMenu ? "flex" : "none")};
+  display: ${(props) => (props.showMenu ? 'flex' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(255, 255, 255, 0.9);
   height: 100vh;
   width: 100vw;
   padding: 5vw;
@@ -32,7 +36,6 @@ const Overlay = styled.div`
     display: none;
   }
 `;
-
 const Menu = styled.nav`
   flex-grow: 1;
   margin-top: 1rem;
@@ -58,20 +61,17 @@ const Menu = styled.nav`
     opacity: 0.75;
   }
 `;
-
 const SideFloat = styled.h2`
   position: fixed;
   top: 25%;
   right: 3.5vw;
   margin: 0;
   text-align: center;
-  /* transform: rotate(90deg); */
   writing-mode: vertical-rl;
   text-orientation: mixed;
   font-size: 18px;
   font-weight: 300;
 `;
-
 const StyledThemeSelector = styled(FontAwesomeIcon)`
   font-size: 28px;
   opacity: 0.75;
@@ -80,7 +80,7 @@ const StyledThemeSelector = styled(FontAwesomeIcon)`
     cursor: pointer;
     opacity: 1;
   }
-`
+`;
 
 const MobileMenu = ({ showMenu, setShowMenu, changeThemePref, themePref }) => {
   return (
@@ -98,8 +98,14 @@ const MobileMenu = ({ showMenu, setShowMenu, changeThemePref, themePref }) => {
         <Link to="/about" activeClassName="active">
           About
         </Link>
+        <Link to="/projects" activeClassName="active">
+          Projects
+        </Link>
       </Menu>
-      <StyledThemeSelector icon={themePref === 'dark' ? faSun : faMoon} onClick={() => changeThemePref()} />
+      <StyledThemeSelector
+        icon={themePref === 'dark' ? faSun : faMoon}
+        onClick={() => changeThemePref()}
+      />
     </Overlay>
   );
 };

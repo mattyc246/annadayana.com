@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "gatsby";
-import White from "../assets/images/white.png";
-import Black from "../assets/images/black.png";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { faMoon, faSun } from "@fortawesome/free-regular-svg-icons";
+import React from 'react';
+import { Link } from 'gatsby';
+import White from '../assets/images/white.png';
+import Black from '../assets/images/black.png';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons';
 
 const Navigator = styled.header`
   width: 100%;
@@ -16,11 +16,10 @@ const Navigator = styled.header`
   align-items: center;
   padding: 0 5vw;
 
-  @media screen and (min-width: 740px){
+  @media screen and (min-width: 740px) {
     justify-content: flex-start;
   }
 `;
-
 const FlexyLinks = styled.nav`
   margin-left: 3rem;
   display: none;
@@ -41,11 +40,10 @@ const FlexyLinks = styled.nav`
     opacity: 0.75;
   }
 
-  @media screen and (min-width: 740px){
+  @media screen and (min-width: 740px) {
     display: block;
   }
 `;
-
 const StyledIcon = styled(FontAwesomeIcon)`
   font-size: 24px;
   opacity: 0.75;
@@ -55,11 +53,10 @@ const StyledIcon = styled(FontAwesomeIcon)`
     cursor: pointer;
   }
 
-  @media screen and (min-width: 740px){
+  @media screen and (min-width: 740px) {
     display: none;
   }
-`
-
+`;
 const StyledThemeSelector = styled(FontAwesomeIcon)`
   font-size: 24px;
   opacity: 0.75;
@@ -70,11 +67,10 @@ const StyledThemeSelector = styled(FontAwesomeIcon)`
     cursor: pointer;
   }
 
-  @media screen and (min-width: 740px){
+  @media screen and (min-width: 740px) {
     display: block;
   }
-`
-
+`;
 const StyledLogo = styled(Link)`
   img {
     width: 80px;
@@ -82,8 +78,7 @@ const StyledLogo = styled(Link)`
   }
 `;
 
-
-const Navbar = ({setShowMenu, changeThemePref, themePref}) => {
+const Navbar = ({ setShowMenu, changeThemePref, themePref }) => {
   return (
     <Navigator>
       <StyledLogo to="/">
@@ -96,8 +91,14 @@ const Navbar = ({setShowMenu, changeThemePref, themePref}) => {
         <Link to="/about" activeClassName="active">
           About
         </Link>
+        <Link to="/projects" activeClassName="active">
+          Projects
+        </Link>
       </FlexyLinks>
-      <StyledThemeSelector icon={themePref === 'dark' ? faSun : faMoon} onClick={() => changeThemePref()} />
+      <StyledThemeSelector
+        icon={themePref === 'dark' ? faSun : faMoon}
+        onClick={() => changeThemePref()}
+      />
       <StyledIcon icon={faBars} onClick={() => setShowMenu(true)} />
     </Navigator>
   );
